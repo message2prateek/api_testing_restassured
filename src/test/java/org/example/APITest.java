@@ -77,8 +77,8 @@ public class APITest {
                 post("/signup").
         then().
                 statusCode(302);
-                // !!This is defect!!! This should be a 303. 302 with POST requires user confirmation before redirect as per HTTP Specification
-                // RestAssured does not support redirections for 302.
+                // !!This is a defect!!! This should be a 303. 302 with POST requires user confirmation before redirect as per HTTP Specification
+                // RestAssured does not support redirections for 302 with POST
 
     }
 }
