@@ -47,7 +47,7 @@ public class APITest {
         // In a real work env. this test will retrieve the token from the previous request i.e. login
         // Not including the login request here to keep the exercise scope short.
 
-        // !! CSRF tokens should not be transmitted within cookies, like it's been done in this request!!
+        // !! CSRF tokens should not be transmitted within cookies, like it's been done in this request !!
 
         HashMap<String, String> headers = new HashMap<>();
         headers.put("content-type", "application/x-www-form-urlencoded");
