@@ -42,6 +42,13 @@ public class APITest {
 
     @Test
     public void canCreateAccountTest() {
+
+        // This test will break once the cookie and thus the csrf token expires.
+        // In a real work env. this test will retrieve the token from the previous request i.e. login
+        // Not including the login request here to keep the exercise scope short.
+
+        // !! CSRF tokens should not be transmitted within cookies, like it's been done in this request!!
+
         HashMap<String, String> headers = new HashMap<>();
         headers.put("content-type", "application/x-www-form-urlencoded");
         headers.put("referer", "https://automationexercise.com/signup");
@@ -50,7 +57,7 @@ public class APITest {
 
         HashMap<String, String> formParams = new HashMap<>();
         formParams.put("name", "Prateek");
-        formParams.put("email_address", "asd" + UUID.randomUUID().toString() + "%40gmail.com");  //neds to be unique
+        formParams.put("email_address", "asd" + UUID.randomUUID().toString() + "%40gmail.com");  //needs to be unique
         formParams.put("password", "12345");
         formParams.put("first_name", "prateek");
         formParams.put("last_name", "sharma");
@@ -70,8 +77,8 @@ public class APITest {
                 post("/signup").
         then().
                 statusCode(302);
+                // !!This is defect!!! This should be a 303. 302 with POST requires user confirmation before redirect as per HTTP Specification
                 // RestAssured does not support redirections for 302.
-                // !!!This is defect!!! This should be a 303.
 
     }
 }
